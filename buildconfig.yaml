@@ -6,15 +6,9 @@ spec:
   failedBuildsHistoryLimit: 5
   nodeSelector: null
   output:
-    - to:
+    to:
       kind: ImageStreamTag
       name: mssql-server:latest
-    - to:
-      kind: ImageStreamTag
-      name: mssql-server:2017-latest
-    - to:
-      kind: ImageStreamTag
-      name: mssql-server:2017
   postCommit: {}
   resources: {}
   runPolicy: Serial
