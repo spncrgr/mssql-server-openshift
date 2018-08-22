@@ -1,0 +1,34 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: mssql-server-build
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    - to:
+      kind: ImageStreamTag
+      name: mssql-server:latest
+    - to:
+      kind: ImageStreamTag
+      name: mssql-server:2017-latest
+    - to:
+      kind: ImageStreamTag
+      name: mssql-server:2017
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      ref: master
+      uri: https://github.com/spncrgr/mssql-server-openshift.git
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: openshift/base-centos7
+  successfulBuildsHistoryLimit: 10
+  triggers:
+  - type: ConfigChange
